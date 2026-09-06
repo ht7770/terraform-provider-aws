@@ -288,6 +288,16 @@ func (p *servicePackage) FrameworkListResources(ctx context.Context) iter.Seq[*i
 			Identity: inttypes.RegionalSingleParameterIdentity(inttypes.StringIdentityAttribute("profile_id", true)),
 		},
 		{
+			Factory:  newCapacityProviderResourceAsListResource,
+			TypeName: "aws_bedrockagentcore_capacity_provider",
+			Name:     "Capacity Provider",
+			Tags: unique.Make(inttypes.ServicePackageResourceTags{
+				IdentifierAttribute: names.AttrARN,
+			}),
+			Region:   inttypes.ResourceRegionDefault(),
+			Identity: inttypes.RegionalSingleParameterIdentity(inttypes.StringIdentityAttribute(names.AttrID, true)),
+		},
+		{
 			Factory:  newEvaluatorResourceAsListResource,
 			TypeName: "aws_bedrockagentcore_evaluator",
 			Name:     "Evaluator",
